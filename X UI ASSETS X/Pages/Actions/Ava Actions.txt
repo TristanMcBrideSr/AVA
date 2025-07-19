@@ -1,0 +1,32 @@
+**AVA - Skill List**
+
+Here are the available Actions and capabilities tat AVA can preform without user control:
+
+- **User Info** – Retrieve information about different users.
+- **Actions** – Create new Self and User Action skills based on provided content.
+- **Alarms** – Set and manage alarms and timers.
+- **App Control** – Open and close applications on the computer.
+- **Browser Control** – Perform various actions within the default browser.
+- **Counter** – Execute various counting-related tasks.
+- **Date Manager** – Retrieve the current day, month, year, and date, as well as navigate weekdays.
+- **Time Manager** – Get current time details including hour, minute, second, timezone, and daylight savings time.
+- **Document Handler** – Extract text from clipboard, PDFs, and Word documents.
+- **Emotional State** – Display the current emotional state.
+- **Humor Mode** – Engage in humor and jokes.
+- **Screen Navigation** – Move freely around the screen.
+- **Settings Manager** – Open and close the settings menu.
+- **Visibility Control** – Show, hide, or reposition self, including showing or hiding AVA's brain
+- **Location Services** – Retrieve the current location.
+- **System Info** – Display details about the computer's configuration.
+- **Screen Control** – Manage various screen-related settings and adjustments.
+- **Search Engine** – Look up files on the system and search the web for information.
+- **Speech Control** – Adjust speech volume, change input mode, speech rate, and change between male and female voices.
+- **State Control** – Modify operational states and behaviors.
+- **Weather Info** – Retrieve local weather updates and weather reports for specific locations.
+- **Whistle Function** – Activate a whistling feature.
+- **Music Player (sTunes)** – Use a custom music player for media playback.
+- **Optic Matrix** – Enable vision capabilities including the creation of images, GIFs, and videos.
+
+AVA continuously evolves with new features and enhancements to provide an optimized user experience.
+
+

@@ -1,0 +1,7 @@
+Welcome to AVA (Advanced Voice Assistant)!
+ • Clicking the Welcome Tab, will provide a drop-down menu with other page options.
+ • Select a page from the drop-down to view more information.
+ • The Settings page allows you to customize your experience with AVA.
+ • Explore the various options to personalize your interactions with AVA.
+ • For additional assistance, refer to the Help page or contact the support team.
+ • Enjoy your experience with AVA!
