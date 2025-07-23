@@ -1,0 +1,9 @@
+Overview Panel
+ • Demo Mode: Toggle demonstration features.
+ • Heart: Activates heart module.
+ • Client: Sets online/offline client mode.
+ • Vision: Enables or disables vision recognition.
+ • Show Tokens: Displays token usage.
+ • Show Capabilities Count: Displays capture count.
+
+ASSISTANT_NAME_NAME, STANDBY, DEACTIVATION, DEFAULT_USER_NAME, can be updated by typing values in the fields below.

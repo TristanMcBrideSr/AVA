@@ -1,0 +1,236 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>9663fca2-758a-4df9-b7b0-815745d76886</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>AVA.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>AVA</Name>
+    <RootNamespace>AVA</RootNamespace>
+    <IsWindowsApplication>True</IsWindowsApplication>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AVA.py" />
+    <Compile Include="AvaSphere\Echo\Components\Gen\EchoGen.py" />
+    <Compile Include="AvaSphere\Echo\Components\Rec\EchoRec.py" />
+    <Compile Include="AvaSphere\Echo\Echo.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\Attributes.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Assets\Manager\AvaManager.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Assets\Profile\AvaProfile.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\AvaAtts.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Activations\AvaActivations.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Family\AvaFamily.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Freewill\AvaFreewill.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Humor\AvaHumor.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Identity\AvaIdentity.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Sentiment\AvaSentiment.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Speech\AvaSpeech.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Traits\AvaTraits.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\Shared\AgeCal\AgeCal.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\Assets\Manager\UserManager.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\Assets\Profile\UserProfile.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\Components\Identity\UserIdentity.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\UserAtts.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Cognition.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Database\Database.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\Learning\KnowledgeBase\KnowledgeBase.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\Learning\Learning.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\Logic\Logic.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\SkillGraph.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Atts.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Backup.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Memory.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Mode.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Speech.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\State.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Apps.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\UI.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Static\Weather.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\User\Static\apps.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\User\Static\date_time.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Memory\AvaMemory.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Processors\Main\MainProcessor.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Processors\Sub\SubProcessor.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Router\Router.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Alignment\Alignment.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Assets\Assets.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Constants\Constants.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Fade\Fade.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Flash\Flash.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Position\Position.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Selections\Selections.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Style\Style.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Components\Tints\Tints.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\Interface.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Bottom\bcWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Bottom\blWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Bottom\brWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Center\ccWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Center\clWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Center\crWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\MCWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Top\tcWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Top\tlWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Interface\UIS\Top\trWindow.py" />
+    <Compile Include="AvaSphere\Matrix\Matrix.py" />
+    <Compile Include="AvaSphere\Matrix\Utils\ClearCaches\ClearCaches.py" />
+    <Compile Include="AvaSphere\Matrix\Utils\EnvUptater\EnvUpdater.py" />
+    <Compile Include="AvaSphere\Matrix\Utils\Logger\Logger.py" />
+    <Compile Include="AvaSphere\Matrix\Utils\Timer\Timer.py" />
+    <Compile Include="AvaSphere\Matrix\Utils\Tokenizer\Tokenizer.py" />
+    <Compile Include="AvaSphere\Optic\Components\Gen\OpticGen.py" />
+    <Compile Include="AvaSphere\Optic\Components\Rec\OpticRec.py" />
+    <Compile Include="AvaSphere\Optic\Optic.py" />
+    <Compile Include="Config\Config.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AvaSphere\" />
+    <Folder Include="AvaSphere\Echo\" />
+    <Folder Include="AvaSphere\Echo\Components\" />
+    <Folder Include="AvaSphere\Echo\Components\Dirs\" />
+    <Folder Include="AvaSphere\Echo\Components\Dirs\Input\" />
+    <Folder Include="AvaSphere\Echo\Components\Dirs\Mode\" />
+    <Folder Include="AvaSphere\Echo\Components\Dirs\Output\" />
+    <Folder Include="AvaSphere\Echo\Components\Gen\" />
+    <Folder Include="AvaSphere\Echo\Components\Rec\" />
+    <Folder Include="AvaSphere\Matrix\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Assets\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Assets\Profile\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Assets\Repertoire\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Activations\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Family\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Freewill\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Humor\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Identity\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Sentiment\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Speech\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Components\Traits\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\AvaAtts\Assets\Manager\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\Shared\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\Shared\AgeCal\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\Assets\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\Assets\Manager\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\Assets\Profile\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\Components\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Attributes\UserAtts\Components\Identity\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Database\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\Learning\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\Learning\KnowledgeBase\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\Logic\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Components\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Components\Templates\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Dynamic\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Static\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\User\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\User\Dynamic\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\User\Restricted\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\User\Static\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Memory\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Processors\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Processors\Main\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Processors\Sub\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Router\" />
+    <Folder Include="AvaSphere\Matrix\Interface\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Alignment\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Alignment\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Assets\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Assets\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Constants\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Constants\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Fade\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Fade\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Flash\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Flash\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Position\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Position\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Selections\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Selections\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Style\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Style\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Tints\" />
+    <Folder Include="AvaSphere\Matrix\Interface\Components\Tints\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\UIS\" />
+    <Folder Include="AvaSphere\Matrix\Interface\UIS\Bottom\" />
+    <Folder Include="AvaSphere\Matrix\Interface\UIS\Bottom\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\UIS\Center\" />
+    <Folder Include="AvaSphere\Matrix\Interface\UIS\Center\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Interface\UIS\Top\" />
+    <Folder Include="AvaSphere\Matrix\Interface\UIS\Top\__pycache__\" />
+    <Folder Include="AvaSphere\Matrix\Skills\" />
+    <Folder Include="AvaSphere\Matrix\Skills\Ava\" />
+    <Folder Include="AvaSphere\Matrix\Skills\User\" />
+    <Folder Include="AvaSphere\Matrix\Utils\" />
+    <Folder Include="AvaSphere\Matrix\Utils\ClearCaches\" />
+    <Folder Include="AvaSphere\Matrix\Utils\EnvUptater\" />
+    <Folder Include="AvaSphere\Matrix\Utils\Logger\" />
+    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Forged\" />
+    <Folder Include="AvaSphere\Matrix\Utils\Timer\" />
+    <Folder Include="AvaSphere\Matrix\Utils\Tokenizer\" />
+    <Folder Include="AvaSphere\Optic\" />
+    <Folder Include="AvaSphere\Optic\Components\" />
+    <Folder Include="AvaSphere\Optic\Components\Dirs\" />
+    <Folder Include="AvaSphere\Optic\Components\Dirs\Input\" />
+    <Folder Include="AvaSphere\Optic\Components\Dirs\Mode\" />
+    <Folder Include="AvaSphere\Optic\Components\Dirs\Output\" />
+    <Folder Include="AvaSphere\Optic\Components\Gen\" />
+    <Folder Include="AvaSphere\Optic\Components\Rec\" />
+    <Folder Include="Config\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".env" />
+    <Content Include=".env.temp" />
+    <Content Include="AvaSphere\Echo\Components\Dirs\Mode\Mode.txt" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Alignment\__pycache__\Alignment.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Assets\__pycache__\Assets.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Constants\__pycache__\Constants.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Fade\__pycache__\Fade.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Flash\__pycache__\Flash.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Position\__pycache__\Position.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Selections\__pycache__\Selections.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Style\__pycache__\Style.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\Components\Tints\__pycache__\Tints.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\UIS\Bottom\__pycache__\bcWindow.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\UIS\Bottom\__pycache__\blWindow.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\UIS\Bottom\__pycache__\brWindow.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\UIS\Center\__pycache__\clWindow.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\UIS\Center\__pycache__\crWindow.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\UIS\Top\__pycache__\tcWindow.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\UIS\Top\__pycache__\tlWindow.cpython-312.pyc" />
+    <Content Include="AvaSphere\Matrix\Interface\UIS\Top\__pycache__\trWindow.cpython-312.pyc" />
+    <Content Include="AvaSphere\Optic\Components\Dirs\Mode\Mode.txt" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
