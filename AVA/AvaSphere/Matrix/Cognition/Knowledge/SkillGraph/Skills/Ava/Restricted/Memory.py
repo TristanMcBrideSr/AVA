@@ -41,6 +41,6 @@ class Memory:
         }
 
     def memorySkill(self, action: str, *args):
-        self.skillLink.argParser.printArgs(self, locals())
+        self.skillLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
         return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)

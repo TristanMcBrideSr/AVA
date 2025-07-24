@@ -28,6 +28,7 @@ class Learning:
         self.db               = Database()
         self.learningDir      = self.db.learningDir
         self.knowledgeBaseDir = self.db.knowledgeBaseDir
+        self.dbName           = 'Learned.db'
         # self.neuralLink      = NeuralLink()
         self.echo             = Echo()
         self.router           = Router()
@@ -39,7 +40,7 @@ class Learning:
         # self.getLearningCore = self.neuralLink.getCore("learningCore")
         # We need to import the KnowledgeBase after the Sync so that it can be synced and updated first before being used
         import AvaSphere.Matrix.Cognition.Knowledge.Learning.KnowledgeBase.KnowledgeBase as KnowledgeBase
-        self.synLearn    = SynLrn(stages=Learning.STAGES, learningDir=self.learningDir, fallbacks=self.fallbacks, knowledgeBase=KnowledgeBase)
+        self.synLearn    = SynLrn(stages=Learning.STAGES, learningDir=self.learningDir, dbName=self.dbName, fallbacks=self.fallbacks, knowledgeBase=KnowledgeBase)
 
         #self.viewDatabase()
 
