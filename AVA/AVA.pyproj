@@ -89,11 +89,16 @@
     <Compile Include="AvaSphere\Matrix\Utils\ClearCaches\ClearCaches.py" />
     <Compile Include="AvaSphere\Matrix\Utils\EnvUptater\EnvUpdater.py" />
     <Compile Include="AvaSphere\Matrix\Utils\Logger\Logger.py" />
+    <Compile Include="AvaSphere\Matrix\Utils\Media\Media.py" />
     <Compile Include="AvaSphere\Matrix\Utils\Timer\Timer.py" />
     <Compile Include="AvaSphere\Matrix\Utils\Tokenizer\Tokenizer.py" />
     <Compile Include="AvaSphere\Optic\Components\Gen\OpticGen.py" />
     <Compile Include="AvaSphere\Optic\Components\Rec\OpticRec.py" />
     <Compile Include="AvaSphere\Optic\Optic.py" />
+    <Compile Include="Config\Components\GoogleConfig.py" />
+    <Compile Include="Config\Components\GroqConfig.py" />
+    <Compile Include="Config\Components\OmniAIConfig.py" />
+    <Compile Include="Config\Components\OpenAIConfig.py" />
     <Compile Include="Config\Config.py" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +193,7 @@
     <Folder Include="AvaSphere\Matrix\Utils\EnvUptater\" />
     <Folder Include="AvaSphere\Matrix\Utils\Logger\" />
     <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Forged\" />
+    <Folder Include="AvaSphere\Matrix\Utils\Media\" />
     <Folder Include="AvaSphere\Matrix\Utils\Timer\" />
     <Folder Include="AvaSphere\Matrix\Utils\Tokenizer\" />
     <Folder Include="AvaSphere\Optic\" />
@@ -199,6 +205,7 @@
     <Folder Include="AvaSphere\Optic\Components\Gen\" />
     <Folder Include="AvaSphere\Optic\Components\Rec\" />
     <Folder Include="Config\" />
+    <Folder Include="Config\Components\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".env" />
