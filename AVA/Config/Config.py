@@ -58,3 +58,4 @@ class Config:
     def getVision(self, *args, **kwargs):
         provider = self.providerMap[self.vision]
         return provider.getVision(*args, **kwargs)
+

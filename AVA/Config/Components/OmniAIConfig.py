@@ -13,6 +13,12 @@ from AvaSphere.Matrix.Utils.Media import Media
 load_dotenv()
 
 OMNI_ACCESS = os.getenv("OMNI_ACCESS", "False") == 'True'  # Set to True in the .env if you have access to OmniAI and its models
+if OMNI_ACCESS:
+    try:
+        from OmniAI import OmniAI  # Import only if OMNI_ACCESS is True
+    except ImportError:
+        pass
+
 
 class OmniAIConfig:
     _instance = None

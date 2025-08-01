@@ -1,9 +1,10 @@
 import os
+from tabnanny import verbose
 import threading
 from pathlib import Path
 from dotenv import load_dotenv
 import logging
-
+import re
 from SkillLink import SkillLink, SyncLink
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 
@@ -49,6 +50,8 @@ class SkillGraph:
             self.getAvaCapabilities()
         if self.showMetaData:
             self.getMetaData()
+        #self.generateExamples(self.getAvaCapabilities(), limit=None, verbose=True)
+        self.skillInstructions()
 
     def _getDir(self, *paths: str) -> str:
         return str(Path(*paths).resolve())
@@ -187,11 +190,14 @@ class SkillGraph:
         """
         Get skill instructions for the ava based on its capabilities.
         """
-        # If you want to use the default skill instructions without examples, uncomment the next line
+        # If you want to override the default skill instructions examples, uncomment the next line
         # and comment the line below it.
-        #return self.skillLink.skillInstructions(self.getAvaCapabilities())
-        skillExamples = ""
-        return self.skillLink.skillInstructions(self.getAvaCapabilities(), skillExamples)
+        # skillExamples = self.skillExamples() # Customize this to match your skill naming conventions
+        # return self.skillLink.skillInstructions(self.getAvaCapabilities(), skillExamples)
+        # NOTE: the skillInstructions method will automatically use your naming conventions you can also,
+        # pass limit=(int e.g 10) to limit the number of examples included in the instructions, or
+        # pass verbose=True to view the instructions in detail as it will print the instructions to the console.
+        return self.skillLink.skillInstructions(self.getAvaCapabilities())
 
     def skillExamples(self):
         """
@@ -199,14 +205,15 @@ class SkillGraph:
         This should be customized to match your skill naming conventions.
         """
         return (
-            # "Single Action Examples:\n" # Don't change this line
-            # "- ['getDate()']\n" # Change to match your skill naming conventions
-            # "- ['getTime()']\n" # Change to match your skill naming conventions
-            # "- ['getDate()', 'getTime()']\n"
+            "Single Action Examples:\n" # Don't change this line
+            "- ['getDate()']\n" # Change to match your skill naming conventions
+            "- ['getTime()']\n" # Change to match your skill naming conventions
+            "- ['getDate()', 'getTime()']\n"
             "Skill With Sub-Action Examples:\n" # Don't change this line
             "- ['appSkill(\"open\", \"Notepad\")']\n" # Change to match your skill naming conventions
             "- ['appSkill(\"open\", \"Notepad\")', 'appSkill(\"open\", \"Word\")']\n"
             "- ['weatherSkill(\"get-weather\", \"47.6588\", \"-117.4260\")']\n" # Change to match your skill naming conventions
+            "- ['weatherSkill(\"get-weather\", \"47.6588\", \"-117.4260\")', 'weatherSkill(\"get-forecast\", \"47.6588\", \"-117.4260\")']\n"
         )
 
     # ----- Can be used with both skills and tools -----
@@ -295,3 +302,6 @@ class SkillGraph:
         """
         return self.skillLink.buildGoogleSafetySettings(harassment, hateSpeech, sexuallyExplicit, dangerousContent)
 
+    def generateExamples(self, capabilities: str, limit: int=None, verbose: bool=False):
+        return self.skillLink.generateExamples(capabilities, limit, verbose)
+        

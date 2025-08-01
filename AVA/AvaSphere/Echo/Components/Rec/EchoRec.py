@@ -1,6 +1,8 @@
 ﻿
 import logging
 import os
+import sys
+import subprocess
 import time
 import re
 import audioop
@@ -72,12 +74,12 @@ class Rec:
         self._initComponents(parent)
 
     def _initComponents(self, parent):
-        self.parent            = parent
-        self.recognizer        = sr.Recognizer()
-        self.useProcessFalback = False
-        self.useBiometrics     = False
-        self.timeOut           = 10  # seconds
-        # if self.useProcessFalback:
+        self.parent        = parent
+        self.recognizer    = sr.Recognizer()
+        self.useFallback   = False
+        self.useBiometrics = False
+        self.timeOut       = 10  # seconds
+        # if self.useFallback:
         #     self.whisper    = WhisperModel(
         #         whisperSize = WHISPER_SIZES["small"],
         #         device      = "cpu",
@@ -126,7 +128,7 @@ class Rec:
         if self.parent.mode == "keyboard":
             ctx = self.keyboardInput()
             return ctx if ctx else False
-        ctx = self.inputAudio(withSound=False)
+        ctx = self.voiceInput(withSound=False)
         if ctx and self.parent.getName in ctx:
             ctx = ctx.replace(self.parent.getName, "").strip()
             return ctx
@@ -148,7 +150,7 @@ class Rec:
             protocol = DEACTIVATION_PROTOCOLS["deactivate"]
 
         if protocol:
-            confirmation = self.inputAudio(withSound=True)
+            confirmation = self.voiceInput(withSound=True)
             if confirmation in CONFIRM_COMMANDS:
                 self.parent.deactivating = True
                 self.parent.synthesize(f"{protocol[1]} {protocol[0]}.")
@@ -170,11 +172,11 @@ class Rec:
         if self.parent.deactivating:
             return None
         if not self.parent.speaking:
-            ctx = self.inputAudio(withSound=True)
+            ctx = self.voiceInput(withSound=True)
             return ctx
         return None
 
-    def inputAudio(self, withSound: bool = False) -> str:
+    def voiceInput(self, withSound: bool = False) -> str:
         if self.parent.mode == "keyboard":
             return self.keyboardInput()
 
@@ -194,7 +196,7 @@ class Rec:
                 logger.error(f"Audio Processing error:", exc_info=True)
                 return None
 
-    def ambientAudio(self) -> str:
+    def ambientInput(self) -> str:
         if self.parent.mode == "keyboard":
             return self.keyboardInput()
 
@@ -238,7 +240,7 @@ class Rec:
                             phrase_time_limit=10 if selfSpeech else None
                         )
                     except sr.WaitTimeoutError:
-                        logger.warning("⚠️ No speech detected: timed out while waiting for phrase.")
+                        logger.warning("No speech detected: timed out while waiting for phrase.")
                         return None
 
                     if selfSpeech:
@@ -265,7 +267,7 @@ class Rec:
                 return result
             except (sr.RequestError, ConnectionError, Timeout, sr.WaitTimeoutError, Exception):
                 logger.error("Recognition Error:", exc_info=True)
-                if self.useProcessFalback:
+                if self.useFallback:
                     print("Switching to Whisper...")
                     #return self._recognizeWithWhisper(audio)
                     result = self._recognizeWithGoogle(audio)
@@ -339,6 +341,34 @@ class Rec:
         if removeNums:
             ctx = re.sub(r"\d+", "", ctx)
         return ctx
+
+    def _getSystemVolume(self) -> float:
+        if sys.platform == 'win32':
+            import ctypes
+            winmm = ctypes.WinDLL("winmm.dll")
+            GetVolume = winmm.waveOutGetVolume
+            volume = ctypes.c_uint()
+            GetVolume(0, ctypes.byref(volume))
+            left = volume.value & 0xFFFF
+            right = (volume.value >> 16) & 0xFFFF
+            return (left + right) / 2 / 65535 * 100
+        elif sys.platform == 'darwin':
+            output = subprocess.run(
+                ["osascript", "-e", "output volume of (get volume settings)"],
+                capture_output=True, text=True)
+            try:
+                return float(output.stdout.strip())
+            except Exception:
+                return 50
+        else:
+            try:
+                proc = subprocess.run(['amixer', 'get', 'Master'], capture_output=True, text=True)
+                for line in proc.stdout.split('\n'):
+                    if 'Mono:' in line or 'Front Left:' in line:
+                        percent = line.split('[')[1].split('%')[0]
+                        return float(percent)
+            except Exception:
+                return 50
 
     # def _getSound(self, key: int) -> None:
     #     try:
