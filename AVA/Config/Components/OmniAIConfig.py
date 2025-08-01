@@ -3,7 +3,6 @@
 ## DO NOT UNCOMMENT OR USE unless you have private access. This will cause errors.
 ## Used for proprietary models including Sybil. OmniAI client NOT installable/public.
 ##---------------------------------------------------------------------------------------------------------##
-#from OmniAI import OmniAI
 
 import os
 import threading

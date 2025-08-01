@@ -11,7 +11,7 @@ from AvaSphere.Matrix.Utils.EnvUptater.EnvUpdater import EnvUpdater
 from AvaSphere.Matrix.Interface.Interface import Interface
 
 
-from SkillLink import SkillLink, ArgumentParser
+from HoloAI import HoloLink
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 
 logger = logging.getLogger(__name__)
@@ -37,8 +37,7 @@ class Appearance:
         self.initialized = True
 
     def _initComponents(self):
-        self.argParser    = ArgumentParser()
-        self.skillLink = SkillLink()
+        self.holoLink = HoloLink()
         self.interface  = Interface()
         self.envUpdater = EnvUpdater()
         self.actionMap = {
@@ -70,9 +69,9 @@ class Appearance:
         }
 
     def appearanceSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
 
     # ────────────────────── Appearance Functions ──────────────────────
@@ -165,8 +164,7 @@ class Move:
         self.initialized = True
 
     def _initComponents(self):
-        self.argParser    = ArgumentParser()
-        self.skillLink = SkillLink()
+        self.holoLink  = HoloLink()
         self.interface = Interface()
         self.actionMap = {
             "current-screen-position": self._currentScreenPosition,
@@ -189,9 +187,9 @@ class Move:
         }
 
     def moveSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
 
     # ─────────────────────── Movement Functions ──────────────────────
@@ -252,7 +250,7 @@ class Move:
 
 #     def _initComponents(self):
 #         self.argParser    = ArgumentParser()
-#         self.skillLink = SkillLink()
+#         self.holoLink = HoloLink()
 #         self.interface = Interface()
 #         self.actionMap = {
 #             "start-playing-hide/seek": self._startHideAndSeek,
@@ -267,9 +265,9 @@ class Move:
 #         }
 
 #     def playSkill(self, action: str, *args):
-#         self.skillLink.calledActions(self, locals())
+#         self.holoLink.calledActions(self, locals())
 #         name = inspect.currentframe().f_code.co_name
-#         return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+#         return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
 
 #     # ────────────────────── Play Functions ──────────────────────

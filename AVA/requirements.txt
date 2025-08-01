@@ -1,5 +1,11 @@
+HoloAI
+openai
+google-genai
+groq
+anthropic
 python-dotenv
 PyQt5
+pyttsx3
 pyttsx4
 pygame
 requests
@@ -10,13 +16,8 @@ python-dateutil
 bcrypt
 opencv-python
 pillow
-openai
-google-genai
 pycaw
 comtypes
 tiktoken
-SkillsManager
-SynLrn
-SynMem
-BitSig
 MediaCapture
+

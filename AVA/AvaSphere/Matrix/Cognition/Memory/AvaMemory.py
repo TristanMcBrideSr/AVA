@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 from dotenv import load_dotenv
 from SynMem import SynMem
-
+from HoloAI import HoloMem
 from AvaSphere.Matrix.Cognition.Attributes.Attributes import Attributes
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 
@@ -36,7 +36,7 @@ class Memory:
     def _initComponents(self):
         self.db           = Database()
         self.attributes   = Attributes()
-        self.synMem       = SynMem()
+        self.holoMem      = HoloMem()
         self.sessionStart = datetime.now()
 
         self.sensoryLimit       = 10
@@ -80,7 +80,7 @@ class Memory:
             self.db.stmCreatedImageDetails,
             self.db.ltmCreatedImageDetails,
         ]
-        self.synMem.setSynMemDirs(synMemDirs)
+        self.holoMem.setSynMemDirs(synMemDirs)
 
     def _setSynMemConfig(self):
         synMemConfig = [
@@ -95,7 +95,7 @@ class Memory:
             self.cleanupExpireUnit,
             self.cleanupExpireValue,
             ]
-        self.synMem.setSynMemConfig(synMemConfig)
+        self.holoMem.setSynMemConfig(synMemConfig)
         self.getUserName()  # Ensure user name is set at initialization
 
     def getUserName(self):
@@ -112,7 +112,7 @@ class Memory:
 
     # ─── Save ────────────────────────────────────────────────────────
     def savePerception(self, ctx: str):
-        self.synMem.savePerception(ctx)
+        self.holoMem.savePerception(ctx)
 
     def process(self, ctx: str, response: str):
         if not self._getActivation("TESTING", "TEST_MODE") or self._getActivation("Learning"):
@@ -136,25 +136,25 @@ class Memory:
     def saveSensory(self, ctx, response):
         path     = self.getDir(self.db.senDir)
         userName = self.getUserName()
-        self.synMem.saveSensory(ctx, response, userName, path)
+        self.holoMem.saveSensory(ctx, response, userName, path)
 
     def saveConversationDetails(self, ctx, response):
         path     = self.getDir(self.db.stmUserConversationDetails)
         userName = self.getUserName()
-        self.synMem.saveConversationDetails(ctx, response, userName, path)
+        self.holoMem.saveConversationDetails(ctx, response, userName, path)
 
     def saveInteractionDetails(self):
         path     = self.getDir(self.db.stmUserInteractionDetails)
         userName = self.getUserName()
-        self.synMem.saveInteractionDetails(userName, path)
+        self.holoMem.saveInteractionDetails(userName, path)
 
     # ─── Retrieve ────────────────────────────────────────────────────────
     def retrievePerception(self):
-        return self.synMem.retrievePerception()
+        return self.holoMem.retrievePerception()
 
     def retrieveSensory(self) -> str:
         senDb = self.getDir(self.db.senDir, f"{self.getUserName()}.db")
-        return self.synMem.retrieveSensory(senDb)
+        return self.holoMem.retrieveSensory(senDb)
 
     def retrieveConversationDetails(self, user: str = None, startDate: str = None, endDate: str = None) -> str:
         user = user or self.getUserName()
@@ -162,21 +162,21 @@ class Memory:
             self.getDir(self.db.stmUserConversationDetails),
             self.getDir(self.db.ltmUserConversationDetails)
         ]
-        return self.synMem.retrieveConversationDetails(user, paths, startDate, endDate)
+        return self.holoMem.retrieveConversationDetails(user, paths, startDate, endDate)
 
     def retrieveInteractionDetails(self, startDate: str = None, endDate: str = None) -> str:
         paths = [
             self.getDir(self.db.stmUserInteractionDetails),
             self.getDir(self.db.ltmUserInteractionDetails)
         ]
-        return self.synMem.retrieveInteractionDetails(paths, startDate, endDate)
+        return self.holoMem.retrieveInteractionDetails(paths, startDate, endDate)
 
     def retrieveImageDetails(self, startDate: str = None, endDate: str = None) -> str:
         paths = [
             self.getDir(self.db.stmCreatedImageDetails),
             self.getDir(self.db.ltmCreatedImageDetails)
         ]
-        return self.synMem.retrieveImageDetails(paths, startDate, endDate)
+        return self.holoMem.retrieveImageDetails(paths, startDate, endDate)
 
     def retrieveLastInteractionDate(self, user: str = None) -> str:
         userName = user or self.getUserName()
@@ -185,7 +185,7 @@ class Memory:
             self.getDir(self.db.stmUserConversationDetails),
             self.getDir(self.db.ltmUserConversationDetails)
         ]
-        return self.synMem.retrieveLastInteractionDate(userName, paths)
+        return self.holoMem.retrieveLastInteractionDate(userName, paths)
 
     def retrieveLastInteractionTime(self, user: str = None) -> str:
         userName = user or self.getUserName()
@@ -194,52 +194,52 @@ class Memory:
             self.getDir(self.db.stmUserConversationDetails),
             self.getDir(self.db.ltmUserConversationDetails)
         ]
-        return self.synMem.retrieveLastInteractionTime(userName, paths)
+        return self.holoMem.retrieveLastInteractionTime(userName, paths)
 
     # ─── Checks ────────────────────────────────────────────────────────
     def _startAutoMaintenance(self, interval=5*60):  # every 5 mins
-        self.synMem.startAutoMaintenance(interval)
+        self.holoMem.startAutoMaintenance(interval)
 
     def _performStartupChecks(self, delay: int = 1):
-        self.synMem.performStartupChecks(delay)
+        self.holoMem.performStartupChecks(delay)
 
     # ─── Clear ────────────────────────────────────────────────────────
     def clearPerception(self):
-        self.synMem.clearPerception()
+        self.holoMem.clearPerception()
 
     def clearFirstEntry(self, user: str = None):
         userName = user or self.getUserName()
-        return self.synMem.clearFirstEntry(userName)
+        return self.holoMem.clearFirstEntry(userName)
 
     def clearLastEntry(self, user: str = None):
         userName = user or self.getUserName()
-        return self.synMem.clearLastEntry(userName)
+        return self.holoMem.clearLastEntry(userName)
 
     def clearAllEntries(self, user: str = None):
         userName = user or self.getUserName()
-        return self.synMem.clearAllEntries(userName)
+        return self.holoMem.clearAllEntries(userName)
 
     # ─── Image ────────────────────────────────────────────────────────
     def saveCreatedImage(self, imageSubject: str, imageData: str) -> None:
         path1 = self.getDir(self.db.createdImages)
         path2 = self.getDir(self.db.stmCreatedImageDetails)
-        return self.synMem.saveCreatedImage(imageSubject, imageData, path1, path2)
+        return self.holoMem.saveCreatedImage(imageSubject, imageData, path1, path2)
 
     def retrieveCreatedImage(self, directory: str, imageName: str):
-        return self.synMem.retrieveCreatedImage(directory, imageName)
+        return self.holoMem.retrieveCreatedImage(directory, imageName)
 
     # ─── View ────────────────────────────────────────────────────────
     def viewDatabase(self, path: str, limit=None):
-        return self.synMem.viewDatabase(path, limit) 
+        return self.holoMem.viewDatabase(path, limit) 
 
     def viewDetailsDatabase(self, path: str, limit=None):
-        return self.synMem.viewDetailsDatabase(path, limit) 
+        return self.holoMem.viewDetailsDatabase(path, limit) 
 
     # ─── Print ────────────────────────────────────────────────────────
     def printPerception(self):
-        if self.synMem.perception:
+        if self.holoMem.perception:
             print("Perception Feedback:")
-            for feedback in self.synMem.perception:
+            for feedback in self.holoMem.perception:
                 print(feedback)
         else:
             #pass

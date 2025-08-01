@@ -31,8 +31,8 @@ class GoogleConfig:
         self.initialized = True
 
     def _setModels(self):
-        self.genRModel = os.getenv("GOOGLE_RESPONSE_MODEL", "gemini-2.5-flash-preview-04-17")
-        self.genVModel = os.getenv("GOOGLE_VISION_MODEL", "gemini-2.5-flash-preview-04-17")
+        self.genRModel = os.getenv("GOOGLE_RESPONSE_MODEL", "gemini-2.5-flash")
+        self.genVModel = os.getenv("GOOGLE_VISION_MODEL", "gemini-2.5-flash")
 
     def _setClients(self):
         self.genClient = self.getGoogleClient()

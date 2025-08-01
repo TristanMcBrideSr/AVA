@@ -6,7 +6,7 @@
 # import logging
 # import subprocess
 # import os
-# from SkillLink import SkillLink
+# from HoloAI import HoloLink
 
 # logger = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@
 #         self.initialized = True
 
 #     def _initComponents(self):
-#         self.skillLink = SkillLink()
+#         self.holoLink = HoloLink()
 #         self.nameMap = APP_NAME_MAP.copy()
 #         self.actionMap = {
 #             "open": self._openApp,
@@ -55,9 +55,9 @@
 #         """
 #         Description: Executes the requested action for application management based on context.
 #         """
-#         # self.skillLink.calledActions(self, locals())
+#         # self.holoLink.calledActions(self, locals())
 #         name = inspect.currentframe().f_code.co_name
-#         return self.skillLink.executeSkill('user', name, self.actionMap, ctx)
+#         return self.holoLink.executeSkill('user', name, self.actionMap, ctx)
 
 #     def _normalizeAppName(self, appName: str) -> str:
 #         app = appName.lower()

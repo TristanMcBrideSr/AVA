@@ -2,7 +2,7 @@
 import logging
 import os
 import warnings
-from BitSig import BitSig
+from HoloAI import HoloSig
 
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 
@@ -19,4 +19,4 @@ warnings.showwarning = warn_with_traceback
 
 logsDir = Database().logsDir
 
-BitSig(logsDir, 'ERROR')
+HoloSig(logsDir, 'ERROR')

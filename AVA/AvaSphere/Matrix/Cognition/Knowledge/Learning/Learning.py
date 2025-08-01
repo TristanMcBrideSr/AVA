@@ -9,8 +9,7 @@ from AvaSphere.Echo.Echo import Echo
 from AvaSphere.Matrix.Cognition.Attributes.Attributes import Attributes
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 from AvaSphere.Matrix.Cognition.Router.Router import Router
-from SyncLink import SyncLink
-from SynLrn import SynLrn
+from HoloAI import HoloSync, HoloLrn
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -32,15 +31,15 @@ class Learning:
         # self.neuralLink      = NeuralLink()
         self.echo             = Echo()
         self.router           = Router()
-        self.syncLink         = SyncLink(githubRepo="TristanMcBrideSr/SkillForge", repoFolder="SkillForge/KnowledgeBase", syncDir=self.knowledgeBaseDir)
+        self.holoSync         = HoloSync(githubRepo="TristanMcBrideSr/SkillForge", repoFolder="SkillForge/KnowledgeBase", syncDir=self.knowledgeBaseDir)
         self.syncActivated    = os.getenv("ACTIVATE_KNOWLEDGE_SYNC", "False")
         if self.syncActivated:
-            self.syncLink.startSync(override=True)  # Download the latest KnowledgeBase the from SkillForge
+            self.holoSync.startSync(override=True)  # Download the latest KnowledgeBase the from SkillForge
         # self.getLearningLink = self.neuralLink.getLink("learningLink")
         # self.getLearningCore = self.neuralLink.getCore("learningCore")
         # We need to import the KnowledgeBase after the Sync so that it can be synced and updated first before being used
         import AvaSphere.Matrix.Cognition.Knowledge.Learning.KnowledgeBase.KnowledgeBase as KnowledgeBase
-        self.synLearn    = SynLrn(stages=Learning.STAGES, learningDir=self.learningDir, dbName=self.dbName, fallbacks=self.fallbacks, knowledgeBase=KnowledgeBase)
+        self.holoLrn = HoloLrn(stages=Learning.STAGES, learningDir=self.learningDir, dbName=self.dbName, fallbacks=self.fallbacks, knowledgeBase=KnowledgeBase)
 
         #self.viewDatabase()
 
@@ -48,15 +47,15 @@ class Learning:
         return str(Path(*paths).resolve())
 
     def viewDatabase(self, stage: str = None):
-        self.synLearn.viewDatabase(stage)
+        self.holoLrn.viewDatabase(stage)
 
     # The higher you set the minScore, the more accurate the results will be and the less results you will get. ideal setting is 60-75
     def retrieveStage(self, ctx: str, stage: str, minScore: int = 40, fallbackCount: int = 5, structured: bool = False):
-        results = self.synLearn.retrieveStage(ctx, stage, minScore, fallbackCount)
+        results = self.holoLrn.retrieveStage(ctx, stage, minScore, fallbackCount)
         if structured:
             out = []
             for entry in results:
-                ctxText, resText = self.synLearn.splitEntry(entry)
+                ctxText, resText = self.holoLrn.splitEntry(entry)
                 out.append(self._handleJsonFormat("user", ctxText))
                 out.append(self._handleJsonFormat("assistant", resText))
             return out
@@ -95,7 +94,7 @@ class Learning:
             return
         correct = self._humanEvaluation(ctx, response, stage) if isLearningActivated else self._selfEvaluation(ctx, response, stage)
         if correct == "yes":
-            self.synLearn.addToLearned(stage, ctx, response)
+            self.holoLrn.addToLearned(stage, ctx, response)
             if isLearningActivated:
                 #self.echo.synthesize(f"I'm glad to hear my {stage} was correct, I'll add it to what I've learned.")
                 print(f"I'm glad to hear my {stage} was correct, I'll add it to what I've learned.")
@@ -156,10 +155,10 @@ class Learning:
         return self.router.getResponse(system, user)
 
     def _handleJsonFormat(self, role="user", content=""):
-        return self.synLearn.handleJsonFormat(role, content)
+        return self.holoLrn.handleJsonFormat(role, content)
 
     def _handleTypedFormat(self, role="user", content=""):
-        return self.synLearn.handleTypedFormat(role, content)
+        return self.holoLrn.handleTypedFormat(role, content)
 
     def getUserName(self, user):
         users = {

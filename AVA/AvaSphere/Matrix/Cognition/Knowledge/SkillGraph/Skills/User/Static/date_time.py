@@ -5,7 +5,7 @@
 # import inspect
 # import threading
 # import logging
-# from SkillLink import SkillLink
+# from HoloAI import HoloLink
 
 # logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@
 #         self.initialized = True
 
 #     def _initComponents(self):
-#         self.skillLink = SkillLink()
+#         self.holoLink = HoloLink()
 #         self.actionMap = {
 #             "what is the date": self._getCurrentDate,
 #             "what is the time": self._getCurrentTime,
@@ -44,9 +44,9 @@
 #         """
 #         Description: Executes the requested action for date/time management based on context.
 #         """
-#         # self.skillLink.calledActions(self, locals())
+#         # self.holoLink.calledActions(self, locals())
 #         name = inspect.currentframe().f_code.co_name
-#         return self.skillLink.executeSkill('user', name, self.actionMap, ctx)
+#         return self.holoLink.executeSkill('user', name, self.actionMap, ctx)
 
 #     def _getCurrentDate(self, *args):
 #         return datetime.now().strftime('%d-%B-%Y')

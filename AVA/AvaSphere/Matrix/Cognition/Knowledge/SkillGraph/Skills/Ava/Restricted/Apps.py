@@ -5,7 +5,7 @@ import os
 import threading
 import inspect
 
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@ class Apps:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink    = SkillLink()
+        self.holoLink    = HoloLink()
         self.nameReplacements = NAME_REPLACEMENTS.copy()  # Copy to avoid modifying the original
         self.actionMap = {
             "open-app":  self._openApp,
@@ -52,9 +52,9 @@ class Apps:
         }
 
     def appSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
     def _normalizeAppName(self, appName: str) -> str:
         app = appName.lower()

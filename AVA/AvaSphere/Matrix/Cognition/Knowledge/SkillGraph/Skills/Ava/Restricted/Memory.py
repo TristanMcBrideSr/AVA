@@ -4,7 +4,7 @@ import logging
 import os
 import threading
 from dotenv import load_dotenv
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 from AvaSphere.Matrix.Cognition.Memory.AvaMemory import Memory as AMemory
 
@@ -28,7 +28,7 @@ class Memory:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink = SkillLink()
+        self.holoLink = HoloLink()
         self.aMemory       = AMemory()
         self.actionMap = {
             **self.aMemory.actionMap, # Inherit actions from Memory
@@ -41,6 +41,6 @@ class Memory:
         }
 
     def memorySkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)

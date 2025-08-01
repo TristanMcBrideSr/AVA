@@ -142,8 +142,6 @@
     <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\Learning\KnowledgeBase\" />
     <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\Logic\" />
     <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\" />
-    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Components\" />
-    <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Components\Templates\" />
     <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\" />
     <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\" />
     <Folder Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Dynamic\" />

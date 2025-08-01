@@ -1,7 +1,7 @@
 import threading
 import inspect
 import logging
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 from AvaSphere.Matrix.Cognition.Attributes.Attributes import Attributes
@@ -35,7 +35,7 @@ class Optic:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink  = SkillLink()
+        self.holoLink  = HoloLink()
         self.db         = Database()
         self.attributes = Attributes()
         self.memory     = Memory()
@@ -54,6 +54,6 @@ class Optic:
         }
 
     def opticSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)

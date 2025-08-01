@@ -9,7 +9,7 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 from dotenv import load_dotenv
 from AvaSphere.Echo.Echo import Echo
 
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +32,7 @@ class Speech:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink = SkillLink()
+        self.holoLink = HoloLink()
         self.echo          = Echo()
         self.devices       = AudioUtilities.GetSpeakers()
         self.audioControl  = self.devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
@@ -60,9 +60,9 @@ class Speech:
         }
 
     def speechSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
     # ────────────────────── Volume Functions ──────────────────────
     def _increaseSpeechVolume(self) -> str:

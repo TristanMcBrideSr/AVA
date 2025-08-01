@@ -94,7 +94,7 @@ class Database:
         "opticModeDir":      ["AvaSphere", "Optic", "Components", "Dirs", "Mode"],
         "opticOutputDir":    ["AvaSphere", "Optic", "Components", "Dirs", "Output"],
         "skillGraphDir":     ["AvaSphere", "Matrix", "Cognition", "Knowledge", "SkillGraph", "Skills"],
-        "skillTemplateDir":  ["AvaSphere", "Matrix", "Cognition", "Knowledge", "SkillGraph", "Components", "Templates"],
+        #"skillTemplateDir":  ["AvaSphere", "Matrix", "Cognition", "Knowledge", "SkillGraph", "Components", "Templates"],
 
         "userSkillsDir":     ["AvaSphere", "Matrix", "Skills", "User"],
         "avaSkillsDir":      ["AvaSphere", "Matrix", "Skills", "Ava"],

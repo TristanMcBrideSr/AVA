@@ -4,7 +4,7 @@ import os
 import threading
 import inspect
 from pathlib import Path
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 from AvaSphere.Matrix.Cognition.Attributes.AvaAtts.Assets.Manager.AvaManager import GetAvaInfo, UpdateAvaInfo
 from AvaSphere.Matrix.Cognition.Attributes.UserAtts.Assets.Manager.UserManager import GetUserInfo, UpdateUserInfo
@@ -30,7 +30,7 @@ class UpdateAva:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink = SkillLink()
+        self.holoLink = HoloLink()
         self.updateAvaInfo = UpdateAvaInfo()
         self.actionMap = {
             **self.updateAvaInfo.actionMap,
@@ -43,9 +43,9 @@ class UpdateAva:
         }
 
     def updateSelfSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
 
 class AvaInfo:
@@ -66,7 +66,7 @@ class AvaInfo:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink = SkillLink()
+        self.holoLink = HoloLink()
         self.getAvaInfo    = GetAvaInfo()
         self.actionMap = {
             **self.getAvaInfo.actionMap,
@@ -79,9 +79,9 @@ class AvaInfo:
         }
 
     def selfInfoSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
 
 class UpdateUser:
@@ -102,7 +102,7 @@ class UpdateUser:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink  = SkillLink()
+        self.holoLink  = HoloLink()
         self.updateUserInfo = UpdateUserInfo()
         self.actionMap = {
             **self.updateUserInfo.actionMap,
@@ -115,9 +115,9 @@ class UpdateUser:
         }
 
     def updateUserSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
 
 
@@ -139,7 +139,7 @@ class UserInfo:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink = SkillLink()
+        self.holoLink = HoloLink()
         self.getUserInfo   = GetUserInfo()
         self.actionMap = {
             **self.getUserInfo.actionMap,
@@ -152,9 +152,9 @@ class UserInfo:
         }
 
     def userInfoSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
 
 

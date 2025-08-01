@@ -4,7 +4,7 @@ import logging
 import os
 import threading
 from dotenv import load_dotenv
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 from AvaSphere.Matrix.Cognition.Attributes.Attributes import Attributes
 
@@ -29,7 +29,7 @@ class State:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink = SkillLink()
+        self.holoLink = HoloLink()
         self.attributes    = Attributes()
         self.actionMap = {
             "deactivate": self._deactivate,
@@ -43,9 +43,9 @@ class State:
         }
 
     def stateSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
     # ─────────────────────── Mode Functions ──────────────────────
     def _activate(self, featureName: str):

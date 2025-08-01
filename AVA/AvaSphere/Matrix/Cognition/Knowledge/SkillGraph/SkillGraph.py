@@ -1,11 +1,10 @@
 import os
-from tabnanny import verbose
 import threading
 from pathlib import Path
 from dotenv import load_dotenv
 import logging
-import re
-from SkillLink import SkillLink, SyncLink
+
+from HoloAI import HoloLink, HoloSync
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 
 load_dotenv()
@@ -30,15 +29,15 @@ class SkillGraph:
 
     def _initComponents(self):
         self.db            = Database()
-        self.skillLink     = SkillLink()
-        self.syncLink      = SyncLink(githubRepo="TristanMcBrideSr/SkillForge", repoFolder="SkillForge/Forge", syncDir=self.db.forgedSkillsDir)
+        self.holoLink      = HoloLink()
+        self.holoSync      = HoloSync(githubRepo="TristanMcBrideSr/SkillForge", repoFolder="SkillForge/Forge", syncDir=self.db.forgedSkillsDir)
         self.envDir        = self._getDir(self.db.projectEnvDir, "Skills")
         self.showSkills    = os.getenv('SHOW_SKILLS', 'False') == 'True'
         self.showMetaData  = os.getenv('SHOW_METADATA', 'False') == 'True'
         self.syncActivated = os.getenv("ACTIVATE_SKILL_SYNC", "False")
         if self.syncActivated:
             # self.skillList=["research"] # List the skills you want to sync from SkillForge
-            self.syncLink.startSync() #(syncList=self.skillList, override=False)  # Download the latest skills from SkillForge changing the override parameter to True will overwrite existing skills
+            self.holoSync.startSync() #(syncList=self.skillList, override=False)  # Download the latest skills from SkillForge changing the override parameter to True will overwrite existing skills
         self.dynamicComponents()
         self.forgedComponents()
         self.staticComponents()
@@ -59,7 +58,7 @@ class SkillGraph:
     def dynamicComponents(self):
         self.dynamicUserSkills = []
         self.dynamicAvaSkills = []
-        self.skillLink.loadComponents(
+        self.holoLink.loadComponents(
             paths=[
                 [self.db.userSkillsDir, self.db.userDynamicDir],
                 [self.db.avaSkillsDir, self.db.avaDynamicDir]
@@ -76,7 +75,7 @@ class SkillGraph:
 
     def forgedComponents(self):
         self.forgedAvaSkills = []
-        self.skillLink.loadComponents(
+        self.holoLink.loadComponents(
             paths=[
                 [self.db.forgedSkillsDir]
             ],
@@ -91,7 +90,7 @@ class SkillGraph:
     def staticComponents(self):
         self.staticUserSkills = []
         self.staticAvaSkills = []
-        self.skillLink.loadComponents(
+        self.holoLink.loadComponents(
             paths=[
                 [self.db.userStaticDir],
                 [self.db.avaStaticDir, self.db.opticDir]
@@ -109,7 +108,7 @@ class SkillGraph:
     def restrictedComponents(self):
         self.restrictedUserSkills = []
         self.restrictedAvaSkills = []
-        self.skillLink.loadComponents(
+        self.holoLink.loadComponents(
             paths=[
                 [self.db.userRestrictedDir],
                 [self.db.avaRestrictedDir]
@@ -129,17 +128,17 @@ class SkillGraph:
             self.dynamicUserSkills + self.staticUserSkills +
             self.restrictedUserSkills
         )
-        return self.skillLink.getComponents(skills, content)
+        return self.holoLink.getComponents(skills, content)
 
     def getAvaActions(self):
         skills = (
             self.dynamicAvaSkills + self.forgedAvaSkills +
             self.staticAvaSkills + self.restrictedAvaSkills
         )
-        return self.skillLink.getComponents(skills)
+        return self.holoLink.getComponents(skills)
 
     def reloadSkills(self):
-        self.skillLink.reloadSkills()
+        self.holoLink.reloadSkills()
 
     def getMetaData(self):
         metaData = (
@@ -148,27 +147,27 @@ class SkillGraph:
                 self.restrictedUserSkills + self.restrictedAvaSkills +
                 self.forgedAvaSkills
         )
-        return self.skillLink.getMetaData(metaData, self.showMetaData)
+        return self.holoLink.getMetaData(metaData, self.showMetaData)
 
     def getAvaCapabilities(self):
         description = False
         capabitites = (self.dynamicAvaSkills + self.forgedAvaSkills + self.staticAvaSkills + self.restrictedAvaSkills)
-        return self.skillLink.getCapabilities(capabitites, self.showSkills, description)
+        return self.holoLink.getCapabilities(capabitites, self.showSkills, description)
 
     def checkActions(self, action: str) -> str:
-        return self.skillLink.checkActions(action)
+        return self.holoLink.checkActions(action)
 
     def getActions(self, action: str) -> list:
-        return self.skillLink.getActions(action)
+        return self.holoLink.getActions(action)
 
     def executeAction(self, actions, action):
-        return self.skillLink.executeAction(actions, action)
+        return self.holoLink.executeAction(actions, action)
 
     def executeActions(self, actions, action):
-        return self.skillLink.executeActions(actions, action)
+        return self.holoLink.executeActions(actions, action)
 
     def setMoveDirs(self):
-        self.skillLink.setMoveDirs(
+        self.holoLink.setMoveDirs(
             primarySkillDir=self.db.userSkillsDir,
             primaryDynamicDir=self.db.userDynamicDir,
             primaryStaticDir=self.db.userStaticDir,
@@ -178,13 +177,13 @@ class SkillGraph:
         )
 
     def setMoveSettings(self, storageUnit="days", storageValue=7, checkInterval=10, noMoveLimit=3):
-        self.skillLink.setMoveSettings(storageUnit, storageValue, checkInterval, noMoveLimit)
+        self.holoLink.setMoveSettings(storageUnit, storageValue, checkInterval, noMoveLimit)
 
     def manualMove(self, sourceDir, destinationDir, minAge=None):
-        return self.skillLink.manualMove(sourceDir, destinationDir, minAge)
+        return self.holoLink.manualMove(sourceDir, destinationDir, minAge)
 
     def autoMove(self):
-        self.skillLink.autoMove()
+        self.holoLink.autoMove()
 
     def skillInstructions(self):
         """
@@ -196,8 +195,8 @@ class SkillGraph:
         # If you want to override the default skill instructions examples, uncomment the next line
         # and comment the line below it.
         # skillExamples = self.skillExamples() # Customize this to match your skill naming conventions
-        # return self.skillLink.skillInstructions(self.getAvaCapabilities(), skillExamples)
-        return self.skillLink.skillInstructions(self.getAvaCapabilities())
+        # return self.holoLink.skillInstructions(self.getAvaCapabilities(), skillExamples)
+        return self.holoLink.skillInstructions(self.getAvaCapabilities())
 
     def skillExamples(self):
         """
@@ -222,19 +221,19 @@ class SkillGraph:
         Check if any of the arguments is a list of dictionaries.
         This indicates structured input (multi-message format).
         """
-        return self.skillLink.isStructured(*args)
+        return self.holoLink.isStructured(*args)
 
     def handleTypedFormat(self, role: str = "user", content: str = ""):
         """
         Format content for Google GenAI APIs.
         """
-        return self.skillLink.handleTypedFormat(role, content)
+        return self.holoLink.handleTypedFormat(role, content)
 
     def handleJsonFormat(self, role: str = "user", content: str = ""):
         """
         Format content for OpenAI APIs and similar JSON-based APIs.
         """
-        return self.skillLink.handleJsonFormat(role, content)
+        return self.holoLink.handleJsonFormat(role, content)
 
     def formatTypedExamples(self, items):
         """
@@ -245,7 +244,7 @@ class SkillGraph:
             - list of dicts: each dict converted to Content with role, dict as text
         Returns a flat list of Content objects.
         """
-        return self.skillLink.formatTypedExamples(items)
+        return self.holoLink.formatTypedExamples(items)
 
     def formatJsonExamples(self, items):
         """
@@ -256,7 +255,7 @@ class SkillGraph:
             - list of dicts: each dict is added individually
         Returns a flat list of message dicts.
         """
-        return self.skillLink.formatJsonExamples(items)
+        return self.holoLink.formatJsonExamples(items)
 
     def formatExamples(self, items, formatFunc):
         """
@@ -264,7 +263,7 @@ class SkillGraph:
         Accepts string, dict, list of any mix, any nested depth.
         Silently ignores None. Converts numbers and bools to strings.
         """
-        return self.skillLink.formatExamples(items, formatFunc)
+        return self.holoLink.formatExamples(items, formatFunc)
 
     def handleTypedExamples(self, items):
         """
@@ -275,7 +274,7 @@ class SkillGraph:
             - list of dicts: each dict converted to Content with role, dict as text
         Returns a flat list of Content objects.
         """
-        return self.skillLink.handleTypedExamples(items)
+        return self.holoLink.handleTypedExamples(items)
 
     def handleJsonExamples(self, items):
         """
@@ -286,7 +285,7 @@ class SkillGraph:
             - list of dicts: each dict is added individually
         Returns a flat list of message dicts.
         """
-        return self.skillLink.handleJsonExamples(items)
+        return self.holoLink.handleJsonExamples(items)
 
     def handleExamples(self, items, formatFunc):
         """
@@ -294,14 +293,14 @@ class SkillGraph:
         Accepts string, dict, list of any mix, any nested depth.
         Silently ignores None. Converts numbers and bools to strings.
         """
-        return self.skillLink.handleExamples(items, formatFunc)
+        return self.holoLink.handleExamples(items, formatFunc)
 
     def buildGoogleSafetySettings(self, harassment="BLOCK_NONE", hateSpeech="BLOCK_NONE", sexuallyExplicit="BLOCK_NONE", dangerousContent="BLOCK_NONE"):
         """
         Construct a list of Google GenAI SafetySetting objects.
         """
-        return self.skillLink.buildGoogleSafetySettings(harassment, hateSpeech, sexuallyExplicit, dangerousContent)
+        return self.holoLink.buildGoogleSafetySettings(harassment, hateSpeech, sexuallyExplicit, dangerousContent)
 
     def generateExamples(self, capabilities: str, limit: int=None, verbose: bool=False):
-        return self.skillLink.generateExamples(capabilities, limit, verbose)
+        return self.holoLink.generateExamples(capabilities, limit, verbose)
         

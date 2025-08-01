@@ -8,7 +8,7 @@ import logging
 import threading
 import inspect
 
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 
 logger = logging.getLogger(__name__)
@@ -32,7 +32,7 @@ class Backup:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink = SkillLink()
+        self.holoLink = HoloLink()
         self.db          = Database()  
         self.sourceDir   = self.db.sourceDir
         self.backupDir   = self.db.backupDir
@@ -51,9 +51,9 @@ class Backup:
         }
 
     def backupSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
     def _getDir(self, *paths: str) -> str:
         return str(Path(*paths).resolve())
