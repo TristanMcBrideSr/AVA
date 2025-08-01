@@ -50,6 +50,7 @@
     <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\Learning\Learning.py" />
     <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\Logic\Logic.py" />
     <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\SkillGraph.py" />
+    <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Forged\Research.py" />
     <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Atts.py" />
     <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Backup.py" />
     <Compile Include="AvaSphere\Matrix\Cognition\Knowledge\SkillGraph\Skills\Ava\Restricted\Memory.py" />

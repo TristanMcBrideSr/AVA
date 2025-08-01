@@ -2,7 +2,7 @@
 import logging
 import os
 import warnings
-from HoloAI import HoloSig
+from HoloAI import HoloLog
 
 from AvaSphere.Matrix.Cognition.Database.Database import Database
 
@@ -19,4 +19,4 @@ warnings.showwarning = warn_with_traceback
 
 logsDir = Database().logsDir
 
-HoloSig(logsDir, 'ERROR')
+HoloLog(logsDir, 'ERROR')
