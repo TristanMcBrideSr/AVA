@@ -189,14 +189,14 @@ class SkillGraph:
     def skillInstructions(self):
         """
         Get skill instructions for the ava based on its capabilities.
+        NOTE: the skillInstructions in the skillLink method will automatically use your naming conventions you can also,
+        - pass limit=(int e.g 10) to limit the number of examples included in the instructions, or
+        - pass verbose=True to view the instructions in detail as it will print the instructions to the console.
         """
         # If you want to override the default skill instructions examples, uncomment the next line
         # and comment the line below it.
         # skillExamples = self.skillExamples() # Customize this to match your skill naming conventions
         # return self.skillLink.skillInstructions(self.getAvaCapabilities(), skillExamples)
-        # NOTE: the skillInstructions method will automatically use your naming conventions you can also,
-        # pass limit=(int e.g 10) to limit the number of examples included in the instructions, or
-        # pass verbose=True to view the instructions in detail as it will print the instructions to the console.
         return self.skillLink.skillInstructions(self.getAvaCapabilities())
 
     def skillExamples(self):
